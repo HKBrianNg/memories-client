@@ -5,6 +5,8 @@ import {Container, AppBar, Typography, Grid} from '@mui/material';
 import memories from '../../images/memories.png';
 import Form from '../Form/Form';
 import Posts from '../Posts/Posts';
+import {Link} from 'react-router-dom';
+
 
 // import Demo from './components/Theme/Demo';
 // import Demo from './components/Breakpoint/Demo';
@@ -25,7 +27,8 @@ function Navbar() {
         <Container maxWidth="lg" sx={{padding:2}}>
         <AppBar position="static" color="inherit" sx={{borderRadius:5, display: 'flex', flexDirection: 'row', 
                                                         justifyContent: 'center', alignItems: 'center', }}>
-            <Typography  variant='h2' color='green' p={0} mr={2}>Memories</Typography>
+            <Typography variant='h2' color='green' p={0} mr={2}>Memories</Typography>
+            {/* <Typography variant='h2' color='green' p={0} mr={2}>Memories</Typography> */}
             <img src={memories} alt="icon" height="45" style={{ borderRadius:'5px' }}/>
         </AppBar>
         <Grid container direction={{xs:'column-reverse', sm:'column-reverse', md: 'row'}} p={1} justify="space-between" alignItems="stretch" spacing={3}>
