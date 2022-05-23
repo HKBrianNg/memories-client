@@ -10,7 +10,7 @@ function Post({post,setcurrentId}) {
     const dispatch = useDispatch();
 
     return (
-        <Card sx={{display: 'flex', flexDirection: 'column', justifyContent: 'space-between', borderRadius:'15px', height:'100%', position:'relative',}}>
+      <Card sx={{display: 'flex', flexDirection: 'column', justifyContent: 'space-between', borderRadius:'15px', height:'100%', position:'relative',}}>
         <CardMedia sx={{height:0, paddingTop: '56.25%', backgroundColor:'rgba(0,0,0,0.5)',backgroundBlendMode:'normal',}} image={post.selectedFile || 'https://user-images.githubusercontent.com/194400/49531010-48dad180-f8b1-11e8-8d89-1e61320e1d82.png'} title={post.title} />
         <div style={{ position:'absolute', top:'5px', left:'7px', color: 'white' }}>
           <Typography variant="subtitle2">{post.creator}</Typography>
