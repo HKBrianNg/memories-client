@@ -1,10 +1,15 @@
+import React, {useEffect, useState} from 'react';
 import {AppBar, Typography, Toolbar, Avatar, Button} from '@mui/material';
 import memories from '../../images/memories.png';
 import {Link} from 'react-router-dom';
 
 function Navbar() {
     
-    const user = null;
+    const [user,setUser] = useState(JSON.parse(localStorage.getItem('profile')));
+    useEffect(()=>{
+        const token = user?.token;
+        setUser(JSON.parse(localStorage.getItem('profile')));
+    },[]);
     // const user = {
     //     result: {
     //         name:'brian',
