@@ -31,14 +31,15 @@ function Navbar() {
         <AppBar position="static" color="inherit" sx={{borderRadius:5, display: 'flex', flexDirection: 'row', justifyContent: 'space-between', 
         alignItems: 'center', }}>
             <div style={{display:'flex', flexDirection:'row', alignItems:'center'}} >
-                <Typography component={Link} to="/" variant='h5' color='green' p={1} mr={1} sx={{textDecoration:'none'}}>Memories</Typography>
-                <img src={memories} alt="icon" height="30" style={{ borderRadius:'10px' }}/>
+                <Typography component={Link} to="/" variant='h6' color='green' width={80} p={1} mr={1} 
+                    sx={{textDecoration:'none'}}>Memories</Typography>
+                <img src={memories} alt="icon" height="30" width="30" style={{ borderRadius:'10px' }}/>
             </div>
             <Toolbar sx={{display:'flex', flexDirection:'row', alignItem:'flex-end', width:'200px',}}>
                 {user ? (
                     <div style={{display:'flex', flexDirection:'row', alignItems:'center', }}>
                         <Avatar alt={user.result?.name} src={user.result?.imageUrl}  sx={{ p:0, width: 30, height: 30, mr:1 }}>{user.result?.name.charAt(0)}</Avatar>
-                        <Typography variant="h6" p={0} mr={1} >{user.result?.name}</Typography>
+                        <Typography variant="subtitle2" p={0} mr={1} width={55}>{user.result?.name}</Typography>
                         <Button variant='contained' color='secondary' onClick={logout}>Logout</Button>
                     </div>
                 ) : (
