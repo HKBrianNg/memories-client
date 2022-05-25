@@ -3,10 +3,10 @@ import axios from 'axios';
 // const url = 'http://localhost:5000/posts';
 // const url = 'https://memories-bn.herokuapp.com/posts';
 
-// const API = axios.create({ baseURL: 'http://localhost:5000' });
-const API = axios.create({ baseURL: 'https://memories-bn.herokuapp.com' });
+const API = axios.create({ baseURL: 'http://localhost:5000' });
+// const API = axios.create({ baseURL: 'https://memories-bn.herokuapp.com' });
 
-// signup, signin
+// signup, signin to system
 export const signIn = (formData) => API.post('/user/signin', formData);
 export const signUp = (formData) => API.post('/user/signup', formData);
 

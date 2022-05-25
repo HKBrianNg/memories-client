@@ -13,7 +13,7 @@ function Auth() {
     const [isSignup,setIsSignup] = useState(false);
     const [showPassword,setShowPassword] = useState(false);
     const [formData,setFormData] = useState(initialState);
-    const navigateHistory = useNavigate();
+    const navigate = useNavigate();
     const dispatch = useDispatch();
 
     const handleChange= (e) => {
@@ -27,11 +27,10 @@ function Auth() {
     }
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(formData);
         if (isSignup) {
-            // dispatch(signup(formData, navigateHistory));
+            dispatch(signup(formData,navigate));
         } else {
-            // dispatch(signin(formData, navigateHistory));
+            dispatch(signin(formData,navigate));
         }
     }
     

@@ -43,8 +43,7 @@ function App() {
                     </Routes> 
                 </Container>
             </Root>
-        </BrowserRouter>
-           
+        </BrowserRouter>      
     );
 }
 
