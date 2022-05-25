@@ -1,8 +1,9 @@
 import React, {useState} from 'react';
-import { Container, Paper, TextField, Typography,Grid, Button } from "@mui/material";
+import { Container, Paper, TextField, Typography,Grid, Button, InputAdornment, IconButton, OutlinedInput } from "@mui/material";
 import { signin, signup } from '../../actions/auth';
 import {useDispatch} from 'react-redux';
 import {useNavigate} from 'react-router-dom';
+import { Visibility, VisibilityOff } from '@mui/icons-material';
 
 function Auth() {
     const initialState = { firstName: '', 
@@ -51,8 +52,16 @@ function Auth() {
                             </>
                         )}
                             <TextField autoComplete='on' name="email" label="Email" type="email" onChange={handleChange} sx={{mb:1}} autoFocus fullWidth/>
-                            <TextField autoComplete='on' name="password" label="Password" type={showPassword ? "text" :"password" } onChange={handleChange} 
-                                onClick={handleShowPassword} sx={{mb:1}} autoFocus fullWidth/>
+                            <OutlinedInput autoComplete='on' name="password" label="Password" type={showPassword ? "text" :"password" } 
+                                        onChange={handleChange} sx={{mb:1}} autoFocus fullWidth
+                                        endAdornment={
+                                            <InputAdornment position="end">
+                                                <IconButton aria-label="toggle password visibility" onClick={handleShowPassword} edge="end">
+                                                    {showPassword ? <Visibility /> : <VisibilityOff />}
+                                                </IconButton>
+                                            </InputAdornment>
+                                        } 
+                            />
                         { isSignup && (
                                 <TextField name="confirmPassword" label="Repeat Password" onChange={handleChange} sx={{mb:1}} 
                                 autoFocus fullWidth/>
