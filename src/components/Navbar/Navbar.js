@@ -3,7 +3,7 @@ import {AppBar, Typography, Toolbar, Avatar, Button} from '@mui/material';
 import memories from '../../images/memories.png';
 import {Link, useLocation, useNavigate} from 'react-router-dom';
 import {useDispatch} from 'react-redux';
-import { decode } from 'punycode';
+import decode from 'jwt-decode';
 import { LOGOUT } from '../../constants/actionTypes';
 
 function Navbar() {
@@ -11,11 +11,11 @@ function Navbar() {
     const dispatch = useDispatch();
     const location = useLocation();
     const navigate = useNavigate();
-    console.log(user);
+    
     const logout = ()=> {
         dispatch({type: LOGOUT});
+        navigate("/",{replace:true});
         setUser(null);
-        navigate("/",{replace: true});
     }
     
     useEffect(()=>{
@@ -36,7 +36,7 @@ function Navbar() {
                 <img src={memories} alt="icon" height="30" width="30" style={{ borderRadius:'10px' }}/>
             </div>
             <Toolbar sx={{display:'flex', flexDirection:'row', alignItem:'flex-end', width:'200px',}}>
-                {user ? (
+                {user?.result ?  (
                     <div style={{display:'flex', flexDirection:'row', alignItems:'center', }}>
                         <Avatar alt={user.result?.name} src={user.result?.imageUrl}  sx={{ p:0, width: 30, height: 30, mr:1 }}>{user.result?.name.charAt(0)}</Avatar>
                         <Typography variant="subtitle2" p={0} mr={1} width={55}>{user.result?.name}</Typography>
@@ -44,7 +44,6 @@ function Navbar() {
                     </div>
                 ) : (
                     <Button component={Link} to="/auth" variant="contained" color="primary">Sign In</Button>
-                    // <Button variant="contained" color="primary">Sign In</Button>
                 )}
             </Toolbar>
         </AppBar>
