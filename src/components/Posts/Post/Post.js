@@ -12,7 +12,7 @@ function Post({post,setcurrentId}) {
     const user = JSON.parse(localStorage.getItem('profile'));
 
     const Likes = () => {
-      if (post.likes.length >0) {
+      if (post?.likes?.length >0) {
         return post.likes.find((like)=>like === user?.result?._id)
         ? (
           <><ThumbUpAltIcon fontSize="small" />&nbsp;{post.likes.length > 2 ? `You and ${post.likes.length - 1} others` : `${post.likes.length} like${post.likes.length > 1 ? 's' : ''}` }</>
