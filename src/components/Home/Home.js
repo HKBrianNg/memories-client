@@ -1,12 +1,12 @@
-import {Grow, Grid, Paper, Pagination, AppBar, TextField, Button} from '@mui/material';
-import React, {useEffect, useState} from 'react';
+import {Grow, Grid, Paper, AppBar, TextField, Button} from '@mui/material';
+import React, {useState} from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import {getPosts} from  '../../actions/posts';
 import Form from '../Form/Form';
 import Posts from '../Posts/Posts';
 import ChipInput from "../../ChipInput/ChipInput";
 import { getPostsBySearch } from '../../actions/posts';
+import Pagination from '../Pagination';
 
 function useQuery() {
     return new URLSearchParams(useLocation().search);
@@ -17,10 +17,7 @@ function Home() {
     const [search, setSearch] = useState('');
     const [tags, setTags] = useState([]);
     const dispatch = useDispatch();
-    useEffect(()=>{
-        dispatch(getPosts());
-    },[currentId,dispatch]);
-    
+     
     const query = useQuery();
     const page = query.get('page') || 1;
     const searchQuery = query.get('searchQuery');

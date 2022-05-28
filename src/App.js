@@ -37,7 +37,7 @@ function App() {
     
     return (
         <BrowserRouter>
-            <Root>
+            {/* <Root> */}
                 <Container maxWidth="xl" sx={{padding:1}}>
                     <Navbar />
                     <Routes>
@@ -48,7 +48,7 @@ function App() {
                         <Route path='/auth' exact element={!user ? <Auth/> : <Navigate to="/posts" />} />
                     </Routes> 
                 </Container>
-            </Root>
+            {/* </Root> */}
         </BrowserRouter>      
     );
 }

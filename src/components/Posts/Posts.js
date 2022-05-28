@@ -4,20 +4,7 @@ import { useSelector } from 'react-redux';
 import Post from './Post/Post';
 
 function Posts({setcurrentId}) {
-    // const {unsortedposts, isLoading} = useSelector((state)=>state.posts);
-    const {isLoading, posts} = useSelector((state)=>state.posts);
-    // const posts = unsortedposts?.sort((a,b)=> {
-    //     let fa = a._id.toLowerCase(),
-    //     fb = b._id.toLowerCase();
-
-    // if (fa < fb) {
-    //     return 1;
-    // }
-    // if (fa > fb) {
-    //     return -1;
-    // }
-    // return 0;
-    // });
+    const {posts, isLoading} = useSelector((state)=>state.posts);
     console.log('isloading:',isLoading);
     console.log('posts length:',posts?.length);
     if (!posts?.length && !isLoading) return 'No posts';
