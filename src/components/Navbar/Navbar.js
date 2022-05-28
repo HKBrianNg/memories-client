@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {AppBar, Typography, Toolbar, Avatar, Button} from '@mui/material';
-import memories from '../../images/memories.png';
+import memoriesLogo from '../../images/memories-Logo.png';
+import memoriesText from '../../images/memories-text.png';
 import {Link, useLocation, useNavigate} from 'react-router-dom';
 import {useDispatch} from 'react-redux';
 import decode from 'jwt-decode';
@@ -31,9 +32,10 @@ function Navbar() {
         <AppBar position="static" color="inherit" sx={{borderRadius:5, display: 'flex', flexDirection: 'row', justifyContent: 'space-between', 
         alignItems: 'center', }}>
             <div style={{display:'flex', flexDirection:'row', alignItems:'center'}} >
-                <Typography component={Link} to="/" variant='h6' color='green' width={80} p={1} mr={1} 
-                    sx={{textDecoration:'none'}}>Memories</Typography>
-                <img src={memories} alt="icon" height="30" width="30" style={{ borderRadius:'10px' }}/>
+                <Link to="/">
+                    <img src={memoriesText} alt="icon" height="45px" style={{padding:'5px',marginRight:"3px"}}/>
+                    <img src={memoriesLogo} alt="icon" height="45px"/>
+                </Link>
             </div>
             <Toolbar sx={{display:'flex', flexDirection:'row', alignItem:'flex-end', width:'200px',}}>
                 {user?.result ?  (

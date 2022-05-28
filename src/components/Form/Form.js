@@ -6,7 +6,10 @@ import {createPost, updatePost} from '../../actions/posts';
 
 function Form({currentId, setcurrentId}) {
     const [postData,setPostData] = useState({title:'',message:'',tags:'',selectedFile:'',});
-    const post = useSelector((state)=>( currentId ? state.posts.find((message)=> message._id === currentId) : null));
+
+    // const {isLoading, posts} = useSelector((state)=>state.posts);
+    const post = useSelector((state)=>( currentId ? state.posts.posts.find((message)=> message._id === currentId) : null));
+    console.log(post);
     const dispatch = useDispatch();
     const user = JSON.parse(localStorage.getItem('profile'));
     
