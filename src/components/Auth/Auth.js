@@ -43,7 +43,7 @@ function Auth() {
         <Container maxWidth='xs'>
             <Paper elevation={2} sx={{p:1, mt:1, display:'flex', flexDirection:'column', alignItems:'center'}}>
                 <Typography variant="h4">{isSignup ? 'Sign up' : 'Sign In'}</Typography>
-                <Grid item sm={12}>
+                <Grid item xs={12} sm={6} md={3}>
                     <form style={{mt:2}} onSubmit={handleSubmit}>
                         { isSignup && (
                             <>
@@ -51,17 +51,17 @@ function Auth() {
                             <TextField name="lastName" label="Last Name" onChange={handleChange} sx={{mb:1}} autoFocus fullWidth/>
                             </>
                         )}
-                            <TextField autoComplete='on' name="email" label="Email" type="email" onChange={handleChange} sx={{mb:1}} autoFocus fullWidth/>
-                            <OutlinedInput autoComplete='on' name="password" label="Password" type={showPassword ? "text" :"password" } 
-                                        onChange={handleChange} sx={{mb:1}} autoFocus fullWidth
-                                        endAdornment={
-                                            <InputAdornment position="end">
-                                                <IconButton aria-label="toggle password visibility" onClick={handleShowPassword} edge="end">
-                                                    {showPassword ? <Visibility /> : <VisibilityOff />}
-                                                </IconButton>
-                                            </InputAdornment>
+                        <TextField autoComplete='on' name="email" label="Email" type="email" onChange={handleChange} sx={{mb:1}} autoFocus fullWidth/>
+                        <OutlinedInput autoComplete='on' name="password" label="Password" type={showPassword ? "text" :"password" } 
+                                       onChange={handleChange} sx={{mb:1}} autoFocus fullWidth
+                                       endAdornment={
+                                       <InputAdornment position="end">
+                                            <IconButton aria-label="toggle password visibility" onClick={handleShowPassword} edge="end">
+                                                {showPassword ? <Visibility /> : <VisibilityOff />}
+                                            </IconButton>
+                                         </InputAdornment>
                                         } 
-                            />
+                        />
                         { isSignup && (
                                 <TextField name="confirmPassword" label="Repeat Password" onChange={handleChange} sx={{mb:1}} 
                                 autoFocus fullWidth/>
