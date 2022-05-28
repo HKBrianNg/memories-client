@@ -33,8 +33,8 @@ function Navbar() {
         alignItems: 'center', }}>
             <div style={{display:'flex', flexDirection:'row', alignItems:'center'}} >
                 <Link to="/">
-                    <img src={memoriesText} alt="icon" height="30px" style={{padding:'5px',marginRight:"3px"}}/>
-                    <img src={memoriesLogo} alt="icon" height="30px"/>
+                    <img src={memoriesText} alt="icon" height="28px" minwidth="80px" style={{padding:'5px',marginRight:"3px"}}/>
+                    <img src={memoriesLogo} alt="icon" height="28px" minwidth="30px" style={{padding:'5px',marginRight:"3px"}}/>
                 </Link>
             </div>
             <Toolbar sx={{display:'flex', flexDirection:'row', alignItem:'flex-end', width:'200px',}}>
