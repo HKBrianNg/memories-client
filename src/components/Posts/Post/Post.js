@@ -1,4 +1,4 @@
-import {Card, CardActions, CardContent, CardMedia, Button, Typography} from '@mui/material';
+import {Card, CardActions, CardContent, CardMedia, Button, Typography, ButtonBase} from '@mui/material';
 import ThumbUpAltIcon from '@mui/icons-material/ThumbUpAlt';
 import ThumbUpAltOutlinedIcon from '@mui/icons-material/ThumbUpAltOutlined';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -6,10 +6,18 @@ import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import moment from 'moment';
 import {useDispatch} from 'react-redux';
 import {deletePost, likePost} from '../../../actions/posts';
+import { useNavigate } from 'react-router-dom';
+import nopicture from '../../../images/nopicture.png';
+import { margin } from '@mui/system';
 
 function Post({post,setcurrentId}) {
     const dispatch = useDispatch();
     const user = JSON.parse(localStorage.getItem('profile'));
+    const navigate = useNavigate();
+    
+    const openPost=() => {
+      navigate(`/posts/${post._id}`,{replace:true});
+    }
 
     const Likes = () => {
       if (post?.likes?.length >0) {
@@ -24,9 +32,10 @@ function Post({post,setcurrentId}) {
     }
 
     return (
-      <Card sx={{display: 'flex', flexDirection: 'column', justifyContent: 'space-between', borderRadius:'15px', height:'100%', position:'relative',}}
+      <Card sx={{display: 'flex', flexDirection: 'column', justifyContent: 'start', borderRadius:'15px', height:'100%', position:'relative',}}
             raised elevation={6}>
-        <CardMedia sx={{height:0, paddingTop: '56.25%', backgroundColor:'rgba(0,0,0,0.5)',backgroundBlendMode:'normal',}} image={post.selectedFile || 'https://user-images.githubusercontent.com/194400/49531010-48dad180-f8b1-11e8-8d89-1e61320e1d82.png'} title={post.title} />
+        <ButtonBase component="span" onClick={openPost} sx={{display: 'flex', justifyContent:'space-between', padding:'0 16px 8px 16px',}}/>
+        <CardMedia sx={{paddingTop: '50%',backgroundBlendMode:'normal',}} image={post.selectedFile || nopicture } title={post.title} />     
         <div style={{ position:'absolute', top:'5px', left:'7px', color: 'white' }}>
           <Typography variant="subtitle2">{post?.name}</Typography>
           <Typography variant="body2">{moment(post?.createdAt).fromNow()}</Typography>
@@ -39,13 +48,15 @@ function Post({post,setcurrentId}) {
               </Button>
             </div>
         )}
-        <div sx={{display:'flex', justifyContent:'space-between'}}>
-          <Typography variant="body2" color="textSecondary" component="h2">{post?.tags.map((tag) => `#${tag} `)}</Typography>
+        <div sx={{display:'flex', justifyContent:'start'}}>
+          <Typography variant="body2" color="textSecondary" component="h2" p={0.2}>{post?.tags.map((tag) => `#${tag} `)}</Typography>
+          <Typography gutterBottom variant="h5" component="h2" p={0.2}>{post?.title}</Typography>
+          {/* <CardContent>
+            <Typography variant="body2" color="textSecondary" component="p">{post?.message}</Typography>
+          </CardContent> */}
+          <Typography variant="body2" color="textSecondary" component="p" p={0.2}>{post?.message}</Typography>
         </div>
-        <Typography sx={{padding:'0 16px',}} gutterBottom variant="h5" component="h2">{post?.title}</Typography>
-        <CardContent>
-          <Typography variant="body2" color="textSecondary" component="p">{post?.message}</Typography>
-        </CardContent>
+        
         <CardActions sx={{padding:'0 16px 8px 16px', display:'flex',justifyContent:'space-between'}}>
           <Button size="small" color="primary" disabled={!user?.result} onClick={() => {dispatch(likePost(post?._id))}}>
             <Likes />

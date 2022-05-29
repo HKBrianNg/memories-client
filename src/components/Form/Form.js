@@ -9,7 +9,6 @@ function Form({currentId, setcurrentId}) {
 
     // const {isLoading, posts} = useSelector((state)=>state.posts);
     const post = useSelector((state)=>( currentId ? state.posts.posts.find((message)=> message._id === currentId) : null));
-    console.log(post);
     const dispatch = useDispatch();
     const user = JSON.parse(localStorage.getItem('profile'));
     
@@ -23,6 +22,7 @@ function Form({currentId, setcurrentId}) {
     }
 
     const handleSubmit = (e) => {
+        console.log("handle form submit",currentId);
         e.preventDefault();
         if (currentId === 0) {
             dispatch(createPost({...postData,name:user?.result?.name}));
@@ -47,8 +47,8 @@ function Form({currentId, setcurrentId}) {
         <Paper variant="outlined" sx={{ padding: '2px', }}>
             <form autoComplete="off" noValidate onSubmit={handleSubmit}>
                 <Typography variant="h6" m={0.5}>{currentId ? `Editing "${post.title}"` : 'Creating a Memory'}</Typography>
-                <TextField name="title" variant="outlined"  label="Title" margin="dense" fullWidth value={postData.title} onChange={(e)=>setPostData({...postData, title:e.target.value})}/>
-                <TextField name="message" variant="outlined" label="Message" margin="dense" fullWidth value={postData.message} onChange={(e)=>setPostData({...postData, message:e.target.value})}/>
+                <TextField name="title" variant="outlined"  label="Title" required margin="dense" fullWidth value={postData.title} onChange={(e)=>setPostData({...postData, title:e.target.value})}/>
+                <TextField name="message" variant="outlined" label="Message" required margin="dense" fullWidth rows={3} multiline maxLength={10} value={postData.message} onChange={(e)=>setPostData({...postData, message:e.target.value})}/>
                 <TextField name="tags" variant="outlined" label="Tags" margin="dense" fullWidth value={postData.tags} onChange={(e)=>setPostData({...postData, tags:e.target.value.split(',')})}/>
                 <div className="fileInput" style={{margin:'20px'}}>
                     <FileBase type="file"  multiple={false} onDone={({base64})=>setPostData({...postData,selectedFile:base64})}/>
