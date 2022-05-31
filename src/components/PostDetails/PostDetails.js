@@ -1,18 +1,29 @@
-import {Paper, Typography,Divider,CircularProgress} from '@mui/material';
-import React, {useEffect} from 'react';
+import {Paper, Typography,Divider,CircularProgress, Button, ToggleButton} from '@mui/material';
+import React, {useEffect, useState} from 'react';
 import { getPost, getPostsBySearch } from '../../actions/posts';
 import {useDispatch, useSelector} from 'react-redux';
 import { useParams, useNavigate } from 'react-router-dom';
 import moment from 'moment';
 import nopicture from '../../images/nopicture.png';
+import {useSpeechSynthesis} from 'react-speech-kit';
+import HeadphonesIcon from '@mui/icons-material/Headphones';
 
 function PostDetails() {
-
+    const {speak, cancel, getVoices} = useSpeechSynthesis();
+    const [selected,setSelected] = useState(true);
     const { post, posts, isLoading } = useSelector((state) => state.posts);
     const { id } = useParams();
     const navigate = useNavigate();
 
     const dispatch = useDispatch();
+
+  //   const SpeechSynthesisVoice = {
+  //       default: true,
+  //       lang: "en-AU",
+  //       localService: true,
+  //       name: "Karen",
+  //       voiceURI: "Karen",
+  // };
 
     useEffect(() => {
         dispatch(getPost(id));
@@ -29,7 +40,7 @@ function PostDetails() {
     const openPost = (_id) => navigate(`/posts/${_id}`);
     
     if (isLoading) {
-        return (
+        return (         
           <Paper elevation={6}  sx={{display: 'flex', justifyContent: 'center', alignItems: 'center', 
                 padding: '20px', borderRadius: '15px', height: '39vh',}}>
             <CircularProgress size="7em" />
@@ -41,10 +52,24 @@ function PostDetails() {
   
     return (
     <>
+    
     <Paper style={{ padding: '10px', borderRadius: '15px', marginTop:'2px', }} elevation={6}>
         <div style={{display: 'flex', width:'100%',flexDirection:'column',}}>
             <div style={{margin:'10px', flex:1}}>
-                <Typography variant="h3" component="h2">{post.title}</Typography>
+                <div style={{display: 'flex', flexDirection:'row',}}>
+                  {/* <a onClick={textToSpeech}><HeadphonesIcon />&nbsp;</a> */}
+                  <ToggleButton color="primary" value="" selected={selected}
+                      onChange={()=>{
+                        setSelected(!selected);
+                        if (selected) {
+                          speak({text:post?.message, voice:null});
+                        } else {
+                          cancel();
+                        }
+                      }}><HeadphonesIcon />
+                  </ToggleButton>
+                  <Typography variant="h3" component="h2">{post.title}</Typography>
+                </div>
                 <Typography gutterBottom variant="h6" color="textSecondary" component="h2">{post.tags.map((tag) => `#${tag} `)}</Typography>
                 <Typography gutterBottom variant="body1" component="p">{post.message}</Typography>
                 <Typography variant="h6">Created by: {post.name}</Typography>

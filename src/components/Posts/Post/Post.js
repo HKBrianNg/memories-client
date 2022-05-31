@@ -53,8 +53,9 @@ function Post({post,setcurrentId}) {
           {/* <CardContent>
             <Typography variant="body2" color="textSecondary" component="p">{post?.message}</Typography>
           </CardContent> */}
-          <Typography variant="body2" color="textSecondary" component="p" p={0.2}>
-            {post?.message.length >60 ? post?.message.substring(0,60).concat(' ...') : post?.message }</Typography>
+          {/* <a onClick={(e)=>{speak({text:post?.message})}}> */}
+          <Typography sx={{'&:hover': { color: 'red', backgroundColor: 'white', }}}  variant="body2" color="textSecondary" component="p" p={0.2} >
+          {post?.message.length >60 ? post?.message.substring(0,60).concat(' ...') : post?.message }</Typography>
         </div>
         
         <CardActions sx={{padding:'0 16px 8px 16px', display:'flex',justifyContent:'space-between'}}>
