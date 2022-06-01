@@ -7,7 +7,7 @@ import Posts from '../Posts/Posts';
 import ChipInput from "../../ChipInput/ChipInput";
 import { getPostsBySearch } from '../../actions/posts';
 import Pagination from '../Pagination';
-import Speech from '../Speech/Speech';
+// import Speech from '../Speech/Speech';
 
 function useQuery() {
     return new URLSearchParams(useLocation().search);
@@ -64,7 +64,7 @@ function Home() {
                             <Pagination page={page}/>
                         </Paper>
                     )}
-                    <Speech />
+                    {/* <Speech /> */}
                 </Grid>
             </Grid>
         </Grow>

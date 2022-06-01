@@ -1,3 +1,4 @@
+import {HK,CN,TW,US,UK} from '../../constants/language';
 import {Paper, Typography,Divider,CircularProgress, Button, ToggleButton} from '@mui/material';
 import React, {useEffect, useState} from 'react';
 import { getPost, getPostsBySearch } from '../../actions/posts';
@@ -5,11 +6,10 @@ import {useDispatch, useSelector} from 'react-redux';
 import { useParams, useNavigate } from 'react-router-dom';
 import moment from 'moment';
 import nopicture from '../../images/nopicture.png';
-import {useSpeechSynthesis} from 'react-speech-kit';
 import HeadphonesIcon from '@mui/icons-material/Headphones';
+import useSpeech from '../Speech/useSpeech';
 
 function PostDetails() {
-    const {speak, cancel, getVoices} = useSpeechSynthesis();
     const [selected,setSelected] = useState(true);
     const { post, posts, isLoading } = useSelector((state) => state.posts);
     const { id } = useParams();
@@ -17,13 +17,7 @@ function PostDetails() {
 
     const dispatch = useDispatch();
 
-  //   const SpeechSynthesisVoice = {
-  //       default: true,
-  //       lang: "en-AU",
-  //       localService: true,
-  //       name: "Karen",
-  //       voiceURI: "Karen",
-  // };
+    const {speak,stop, resume, pause} = useSpeech();
 
     useEffect(() => {
         dispatch(getPost(id));
@@ -49,7 +43,6 @@ function PostDetails() {
       }
 
     const recommendedPosts = posts.filter(({ _id }) => _id !== post._id);
-  
     return (
     <>
     
@@ -57,14 +50,13 @@ function PostDetails() {
         <div style={{display: 'flex', width:'100%',flexDirection:'column',}}>
             <div style={{margin:'10px', flex:1}}>
                 <div style={{display: 'flex', flexDirection:'row',}}>
-                  {/* <a onClick={textToSpeech}><HeadphonesIcon />&nbsp;</a> */}
                   <ToggleButton color="primary" value="" selected={selected}
                       onChange={()=>{
                         setSelected(!selected);
                         if (selected) {
-                          speak({text:post?.message, voice:null});
+                          speak(US,post?.message);
                         } else {
-                          cancel();
+                          stop();
                         }
                       }}><HeadphonesIcon />
                   </ToggleButton>

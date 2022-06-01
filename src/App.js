@@ -1,7 +1,7 @@
 import React from 'react';
 import {Container} from '@mui/material';
-import { styled } from '@mui/material/styles';
-import {red, green, blue, purple} from '@mui/material/colors';
+// import { styled } from '@mui/material/styles';
+// import {red, green, blue, purple} from '@mui/material/colors';
 import Navbar from './components/Navbar/Navbar';
 import Home from './components/Home/Home';
 import Auth from './components/Auth/Auth';
@@ -18,27 +18,27 @@ import {BrowserRouter,Route, Routes, Navigate} from 'react-router-dom';
 
 function App() {
     
-    const Root = styled('div')(({theme})=>({
-        [theme.breakpoints.down('sm')]:{
-            backgroundColor: red[500],
-        },
-        [theme.breakpoints.up('sm')]: {
-            backgroundColor: blue[500],
-        },
-        [theme.breakpoints.up('md')]: {
-            backgroundColor: green[500],
-        },
-        [theme.breakpoints.up('lg')]: {
-            backgroundColor: purple[500],
-        },
-    }));
+    // const Root = styled('div')(({theme})=>({
+    //     [theme.breakpoints.down('sm')]:{
+    //         backgroundColor: red[500],
+    //     },
+    //     [theme.breakpoints.up('sm')]: {
+    //         backgroundColor: blue[500],
+    //     },
+    //     [theme.breakpoints.up('md')]: {
+    //         backgroundColor: green[500],
+    //     },
+    //     [theme.breakpoints.up('lg')]: {
+    //         backgroundColor: purple[500],
+    //     },
+    // }));
 
     const user = JSON.parse(localStorage.getItem('profile'));
     
     return (
         <BrowserRouter>
             {/* <Root> */}
-                <Container maxWidth="xl" sx={{padding:1}}>
+                <Container maxWidth="xl">
                     <Navbar />
                     <Routes>
                         <Route path='/' exact element={<Navigate to="/posts" />} />

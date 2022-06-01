@@ -27,9 +27,10 @@ function Navbar() {
         }
         setUser(JSON.parse(localStorage.getItem('profile')));
     },[location]);
+   
 
     return (
-        <AppBar position="static" color="inherit" sx={{borderRadius:5, display: 'flex', flexDirection: 'row', justifyContent: 'space-between', 
+        <AppBar position="sticky" color="inherit" sx={{borderRadius:5, display: 'flex', flexDirection: 'row', justifyContent: 'space-between', 
         alignItems: 'center', }}>
             <div style={{display:'flex', flexDirection:'row', alignItems:'center'}} >
                 <Link to="/">
@@ -37,6 +38,7 @@ function Navbar() {
                     <img src={memoriesLogo} alt="icon" height="28px" width="30px" style={{padding:'5px',marginRight:"3px"}}/>
                 </Link>
             </div>
+           
             <Toolbar sx={{display:'flex', flexDirection:'row', alignItem:'flex-end', width:'200px',}}>
                 {user?.result ?  (
                     <div style={{display:'flex', flexDirection:'row', alignItems:'center', }}>
