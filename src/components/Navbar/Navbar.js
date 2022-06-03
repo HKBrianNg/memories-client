@@ -6,9 +6,13 @@ import {Link, useLocation, useNavigate} from 'react-router-dom';
 import {useDispatch} from 'react-redux';
 import decode from 'jwt-decode';
 import { LOGOUT } from '../../constants/actionTypes';
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+import TranslateIcon from '@mui/icons-material/Translate';
 
 function Navbar() {
     const [user,setUser] = useState(JSON.parse(localStorage.getItem('profile')));
+    const [currentId, setcurrentId] = useState(0);
+    const [isLogon,setIsLogon] = useState(false);
     const dispatch = useDispatch();
     const location = useLocation();
     const navigate = useNavigate();
@@ -34,11 +38,19 @@ function Navbar() {
         alignItems: 'center', }}>
             <div style={{display:'flex', flexDirection:'row', alignItems:'center'}} >
                 <Link to="/">
-                    <img src={memoriesText} alt="icon" height="28px" width="70px" style={{padding:'5px',marginRight:"3px"}}/>
-                    <img src={memoriesLogo} alt="icon" height="28px" width="30px" style={{padding:'5px',marginRight:"3px"}}/>
+                    <img src={memoriesLogo} alt="icon" height="25px" width="25px" style={{padding:'2px',marginRight:"1px"}}/>
+                    <img src={memoriesText} alt="icon" height="25px" width="50px" style={{padding:'2px',marginRight:"1px"}}/>
                 </Link>
+                <TranslateIcon />
             </div>
-           
+            {user?.result ? (
+                <Link to='/posts/create'>
+                    <AddCircleOutlineIcon  fontSize='large' sx={{marginRight:"1px"}}/>
+                </Link>
+            ) : (
+                <AddCircleOutlineIcon  fontSize='large' sx={{marginRight:"1px"}}/>
+            )}
+            
             <Toolbar sx={{display:'flex', flexDirection:'row', alignItem:'flex-end', width:'200px',}}>
                 {user?.result ?  (
                     <div style={{display:'flex', flexDirection:'row', alignItems:'center', }}>

@@ -33,15 +33,15 @@ function Form({currentId, setcurrentId}) {
         }
     }
    
-    if (!user?.result?.name) {
-        return (
-            <Paper  sx={{ padding: '2px', }}>
-                <Typography variant="h6" align="center">
-                    Please Sign In to create your own memories and like other's memories.
-                </Typography>
-            </Paper>
-        );
-    }
+    // if (!user?.result?.name) {
+    //     return (
+    //         <Paper  sx={{ padding: '2px', }}>
+    //             <Typography variant="h6" align="center">
+    //                 Please Sign In to create your own memories and like other's memories.
+    //             </Typography>
+    //         </Paper>
+    //     );
+    // }
 
     return(
         <Paper variant="outlined" sx={{ padding: '2px', }}>
