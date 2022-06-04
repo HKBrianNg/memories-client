@@ -6,11 +6,11 @@ import {createPost, updatePost} from '../../actions/posts';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import {useNavigate} from 'react-router-dom';
 
-function Form({currentId, setcurrentId}) {
+function Form({currentId}) {
     
     // functions
     const clear = () => {
-        setcurrentId(0);
+        // setcurrentId(0);
         setPostData({ title: '', message: '', tags: '', selectedFile: '' });
     }
     
