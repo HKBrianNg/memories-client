@@ -16,13 +16,17 @@ import StopCircleOutlinedIcon from '@mui/icons-material/StopCircleOutlined';
 import PauseCircleOutlineOutlinedIcon from '@mui/icons-material/PauseCircleOutlineOutlined';
 import EditIcon from '@mui/icons-material/Edit';
 
-function Post({post,setcurrentId}) {
+function Post({post}) {
     const dispatch = useDispatch();
     const user = JSON.parse(localStorage.getItem('profile'));
     const navigate = useNavigate();
     const [selectLang,setSelectLang] = useState(TW);
     const openPost=() => {
       navigate(`/posts/${post._id}`,{replace:true});
+    }
+
+    const openCreatePost=() => {
+      navigate(`/posts/create/${post._id}`,{replace:true});
     }
 
     const Likes = () => {
@@ -100,7 +104,7 @@ function Post({post,setcurrentId}) {
             <Likes />
           </Button>
           {(user?.result?._id === post?.creator) && (
-              <Button color="secondary" onClick={() => {setcurrentId(post?._id)}}>
+              <Button color="secondary" onClick={openCreatePost}>
                   <EditIcon fontSize="small" />&nbsp;EDIT
               </Button>
           )}

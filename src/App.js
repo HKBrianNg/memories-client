@@ -44,6 +44,7 @@ function App() {
                     <Routes>
                         <Route path='/' exact element={<Navigate to="/posts/search" />} />
                         <Route path='/posts/create' exact element={<PostCreate />}/>
+                        <Route path='/posts/create/:id' exact element={<PostCreate />}/>
                         <Route path='/posts/search' exact element={<PostsSearch />}/>
                         <Route path='/posts/:id' exact element={<PostDetails />} />
                         <Route path='/auth' exact element={!user ? <Auth/> : <Navigate to="/posts" />} />

@@ -10,7 +10,6 @@ function Form({currentId}) {
     
     // functions
     const clear = () => {
-        // setcurrentId(0);
         setPostData({ title: '', message: '', tags: '', selectedFile: '' });
     }
     

@@ -9,7 +9,6 @@ import Posts from './Posts';
 import SearchIcon from '@mui/icons-material/Search';
 
 function PostsSearch() {
-    const [currentId, setcurrentId] = useState(0);
     const [search, setSearch] = useState('');   
     const [tags, setTags] = useState([]);
     const dispatch = useDispatch();
@@ -60,7 +59,7 @@ function PostsSearch() {
         <Grow in>
             <Grid container direction={{xs:'column-reverse', sm:'column-reverse', md: 'row'}} p={2} justify="space-between" alignItems="stretch">
                 <Grid item xs={12} sm={12} md={12}>
-                    <Posts setcurrentId={setcurrentId}/>
+                    <Posts />
                 </Grid>
             </Grid>
         </Grow>
