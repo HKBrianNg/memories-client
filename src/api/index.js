@@ -3,8 +3,8 @@ import axios from 'axios';
 // const url = 'http://localhost:5000/posts';
 // const url = 'https://memories-bn.herokuapp.com/posts';
 
-const API = axios.create({ baseURL: 'http://localhost:5000' });
-// const API = axios.create({ baseURL: 'https://memories-bn.herokuapp.com' });
+// const API = axios.create({ baseURL: 'http://localhost:5000' });
+const API = axios.create({ baseURL: 'https://memories-bn.herokuapp.com' });
 
 API.interceptors.request.use((req)=>{
     if (localStorage.getItem('profile')) {
