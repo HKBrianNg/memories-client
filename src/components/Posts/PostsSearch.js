@@ -1,4 +1,4 @@
-import {AppBar, Grow, Grid, TextField, Paper, Button} from '@mui/material';
+import {AppBar, Grow, Grid, TextField, Paper} from '@mui/material';
 import {Navigate, useLocation} from 'react-router-dom';
 import ChipInput from "../../ChipInput/ChipInput";
 import { getPostsBySearch } from '../../actions/posts';
