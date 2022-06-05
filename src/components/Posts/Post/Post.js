@@ -2,7 +2,6 @@ import {Card, CardActions, CardMedia, Button, Typography, ToggleButton, ToggleBu
 import ThumbUpAltIcon from '@mui/icons-material/ThumbUpAlt';
 import ThumbUpAltOutlinedIcon from '@mui/icons-material/ThumbUpAltOutlined';
 import DeleteIcon from '@mui/icons-material/Delete';
-import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import moment from 'moment';
 import {useDispatch} from 'react-redux';
 import {deletePost, likePost} from '../../../actions/posts';

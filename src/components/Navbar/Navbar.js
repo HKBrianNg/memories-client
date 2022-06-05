@@ -7,7 +7,10 @@ import {useDispatch} from 'react-redux';
 import decode from 'jwt-decode';
 import { LOGOUT } from '../../constants/actionTypes';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
-import TranslateIcon from '@mui/icons-material/Translate';
+import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
+import MoreVertIcon from '@mui/icons-material/MoreVert';
+import AppsIcon from '@mui/icons-material/Apps';
+import KeyboardVoiceIcon from '@mui/icons-material/KeyboardVoice';
 
 function Navbar() {
     const [user,setUser] = useState(JSON.parse(localStorage.getItem('profile')));
@@ -41,7 +44,6 @@ function Navbar() {
                     <img src={memoriesLogo} alt="icon" height="25px" width="25px" style={{padding:'2px',marginRight:"1px"}}/>
                     <img src={memoriesText} alt="icon" height="25px" width="50px" style={{padding:'2px',marginRight:"1px"}}/>
                 </Link>
-                <TranslateIcon />
             </div>
             {user?.result ? (
                 <Link to='/posts/create'>
@@ -51,7 +53,16 @@ function Navbar() {
                 <AddCircleOutlineIcon  fontSize='large' sx={{marginRight:"1px"}}/>
             )}
             
-            <Toolbar sx={{display:'flex', flexDirection:'row', alignItem:'flex-end', width:'200px',}}>
+            <Toolbar sx={{display:'flex', flexDirection:'row',}}>
+                <Button>
+                    <KeyboardVoiceIcon fontSize='medium'/>
+                </Button>
+                <Button>
+                    <AppsIcon fontSize='medium' />
+                </Button>
+                <Button>
+                    <MoreVertIcon fontSize='medium'/>
+                </Button>
                 {user?.result ?  (
                     <div style={{display:'flex', flexDirection:'row', alignItems:'center', }}>
                         <Avatar alt={user.result?.name} src={user.result?.imageUrl}  sx={{ p:0, width: 30, height: 30, mr:1 }}>{user.result?.name.charAt(0)}</Avatar>
@@ -59,7 +70,9 @@ function Navbar() {
                         <Button variant='contained' color='secondary' onClick={logout}>Logout</Button>
                     </div>
                 ) : (
-                    <Button component={Link} to="/auth" variant="contained" color="primary">Sign In</Button>
+                    <Button component={Link} to="/auth" variant="contained" color="primary">
+                       <AccountCircleOutlinedIcon fontSize='medium'/>Sign In
+                    </Button>
                 )}
             </Toolbar>
         </AppBar>
