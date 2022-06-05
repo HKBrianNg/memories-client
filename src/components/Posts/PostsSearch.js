@@ -11,7 +11,7 @@ import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import {Link} from 'react-router-dom';
 
 function PostsSearch() {
-    const user = useState(JSON.parse(localStorage.getItem('profile')));
+    // const user = useState(JSON.parse(localStorage.getItem('profile')));
 
     const [search, setSearch] = useState('');   
     const [tags, setTags] = useState([]);
@@ -44,13 +44,18 @@ function PostsSearch() {
         <>
         <AppBar position="sticky" color="inherit" sx={{borderRadius:5, display: 'flex', flexDirection: 'row', justifyContent: 'start', 
                                                         alignItems: 'center', padding:'10px', marginTop:'2px',}}>
-                {user?.result ? (
+                {/* {user?.result ? (
                     <Link to='/posts/create'>
                         <AddCircleOutlineIcon  fontSize='large' sx={{marginRight:"1px"}}/>
                     </Link>
                 ) : (
                     <AddCircleOutlineIcon  fontSize='large' sx={{marginRight:"1px"}}/>
                 )}
+                 */}
+               
+                <Link to='/posts/create'>
+                        <AddCircleOutlineIcon  fontSize='large' color="primary" sx={{marginRight:"1px"}}/>
+                </Link>
                 
                 <ChipInput 
                     selectedTags={handleSelecetedTags} variant="outlined" id="tags" name="tags" label="Tags"/>
