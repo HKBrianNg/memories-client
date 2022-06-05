@@ -7,8 +7,12 @@ import {useState} from 'react';
 import {useDispatch} from 'react-redux';
 import Posts from './Posts';
 import SearchIcon from '@mui/icons-material/Search';
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+import {Link} from 'react-router-dom';
 
 function PostsSearch() {
+    const [user,setUser] = useState(JSON.parse(localStorage.getItem('profile')));
+
     const [search, setSearch] = useState('');   
     const [tags, setTags] = useState([]);
     const dispatch = useDispatch();
@@ -45,6 +49,14 @@ function PostsSearch() {
         <>
         <AppBar position="sticky" color="inherit" sx={{borderRadius:5, display: 'flex', flexDirection: 'row', justifyContent: 'start', 
                                                         alignItems: 'center', padding:'10px', marginTop:'2px',}}>
+                {user?.result ? (
+                    <Link to='/posts/create'>
+                        <AddCircleOutlineIcon  fontSize='large' sx={{marginRight:"1px"}}/>
+                    </Link>
+                ) : (
+                    <AddCircleOutlineIcon  fontSize='large' sx={{marginRight:"1px"}}/>
+                )}
+                
                 <TextField onKeyDown={handleKeyPress} name="search" variant="outlined" label="Search Memories" 
                             sx={{mr:1}} value={search} onChange={(e)=>setSearch(e.target.value)} />
                 <ChipInput 

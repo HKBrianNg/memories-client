@@ -6,7 +6,6 @@ import {Link, useLocation, useNavigate} from 'react-router-dom';
 import {useDispatch} from 'react-redux';
 import decode from 'jwt-decode';
 import { LOGOUT } from '../../constants/actionTypes';
-import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import AppsIcon from '@mui/icons-material/Apps';
@@ -14,7 +13,6 @@ import KeyboardVoiceIcon from '@mui/icons-material/KeyboardVoice';
 
 function Navbar() {
     const [user,setUser] = useState(JSON.parse(localStorage.getItem('profile')));
-    const [currentId, setcurrentId] = useState(0);
     const [isLogon,setIsLogon] = useState(false);
     const dispatch = useDispatch();
     const location = useLocation();
@@ -45,13 +43,6 @@ function Navbar() {
                     <img src={memoriesText} alt="icon" height="25px" width="50px" style={{padding:'2px',marginRight:"1px"}}/>
                 </Link>
             </div>
-            {user?.result ? (
-                <Link to='/posts/create'>
-                    <AddCircleOutlineIcon  fontSize='large' sx={{marginRight:"1px"}}/>
-                </Link>
-            ) : (
-                <AddCircleOutlineIcon  fontSize='large' sx={{marginRight:"1px"}}/>
-            )}
             
             <Toolbar sx={{display:'flex', flexDirection:'row',}}>
                 <Button>
