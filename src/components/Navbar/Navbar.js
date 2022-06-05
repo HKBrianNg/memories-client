@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from 'react';
-import {AppBar, Typography, Toolbar, Avatar, Button} from '@mui/material';
+import {AppBar, Typography, Toolbar, Avatar, Button, TextField} from '@mui/material';
 import memoriesLogo from '../../images/memories-Logo.png';
 import memoriesText from '../../images/memories-text.png';
-import {Link, useLocation, useNavigate} from 'react-router-dom';
+import {Link, useLocation, useNavigate, Navigate} from 'react-router-dom';
 import {useDispatch} from 'react-redux';
 import decode from 'jwt-decode';
 import { LOGOUT } from '../../constants/actionTypes';
@@ -10,10 +10,12 @@ import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import AppsIcon from '@mui/icons-material/Apps';
 import KeyboardVoiceIcon from '@mui/icons-material/KeyboardVoice';
+import {getPostsBySearch} from '../../actions/posts';
+import SearchIcon from '@mui/icons-material/Search';
 
 function Navbar() {
     const [user,setUser] = useState(JSON.parse(localStorage.getItem('profile')));
-    const [isLogon,setIsLogon] = useState(false);
+    const [search, setSearch] = useState('');   
     const dispatch = useDispatch();
     const location = useLocation();
     const navigate = useNavigate();
@@ -24,6 +26,23 @@ function Navbar() {
         setUser(null);
     }
     
+    const handleKeyPress = (e) => {
+        if (e.keyCode === 13) {
+            searchPost();
+          }
+    }
+
+    const searchPost = () => {
+        const tags = [];
+        if (search.trim() || tags) {
+            dispatch(getPostsBySearch({search, tags: tags.join(',')}));
+            Navigate(`/posts/search?searchQuery=${search || 'none'}&tags=${tags.join(',')}`);
+        } else {
+            Navigate('/posts/search');
+        }
+    }
+
+
     useEffect(()=>{
         const token = user?.token;
         if (token) {
@@ -36,13 +55,18 @@ function Navbar() {
 
     return (
         <AppBar position="sticky" color="inherit" sx={{borderRadius:5, display: 'flex', flexDirection: 'row', justifyContent: 'space-between', 
-        alignItems: 'center', }}>
+            alignItems: 'center', }}>
             <div style={{display:'flex', flexDirection:'row', alignItems:'center'}} >
                 <Link to="/">
                     <img src={memoriesLogo} alt="icon" height="25px" width="25px" style={{padding:'2px',marginRight:"1px"}}/>
                     <img src={memoriesText} alt="icon" height="25px" width="50px" style={{padding:'2px',marginRight:"1px"}}/>
                 </Link>
             </div>
+            <Toolbar sx={{display:'flex', flexDirection:'row',}}>
+                <TextField onKeyDown={handleKeyPress} name="search" variant="outlined" label="Search" 
+                            sx={{mr:1,p:1}} value={search} onChange={(e)=>setSearch(e.target.value)} />
+                <SearchIcon fontSize="large" onClick={searchPost }/>
+            </Toolbar>
             
             <Toolbar sx={{display:'flex', flexDirection:'row',}}>
                 <Button>

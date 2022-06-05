@@ -1,4 +1,4 @@
-import {AppBar, Grow, Grid, TextField, Paper} from '@mui/material';
+import {AppBar, Grow, Grid, Paper} from '@mui/material';
 import {Navigate, useLocation} from 'react-router-dom';
 import ChipInput from "../../ChipInput/ChipInput";
 import { getPostsBySearch } from '../../actions/posts';
@@ -11,7 +11,7 @@ import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import {Link} from 'react-router-dom';
 
 function PostsSearch() {
-    const [user,setUser] = useState(JSON.parse(localStorage.getItem('profile')));
+    const user = useState(JSON.parse(localStorage.getItem('profile')));
 
     const [search, setSearch] = useState('');   
     const [tags, setTags] = useState([]);
@@ -26,17 +26,12 @@ function PostsSearch() {
         return new URLSearchParams(useLocation().search);
     }
 
-    const handleKeyPress = (e) => {
-        if (e.keyCode === 13) {
-            searchPost();
-          }
-    }
-
     function handleSelecetedTags(tags) {
         setTags(tags);
     }
 
     const searchPost = () => {
+        setSearch(null);
         if (search.trim() || tags) {
             dispatch(getPostsBySearch({search, tags: tags.join(',')}));
             Navigate(`/posts/search?searchQuery=${search || 'none'}&tags=${tags.join(',')}`);
@@ -57,8 +52,6 @@ function PostsSearch() {
                     <AddCircleOutlineIcon  fontSize='large' sx={{marginRight:"1px"}}/>
                 )}
                 
-                <TextField onKeyDown={handleKeyPress} name="search" variant="outlined" label="Search Memories" 
-                            sx={{mr:1}} value={search} onChange={(e)=>setSearch(e.target.value)} />
                 <ChipInput 
                     selectedTags={handleSelecetedTags} variant="outlined" id="tags" name="tags" label="Tags"/>
                 <SearchIcon fontSize="large" onClick={searchPost }/>
