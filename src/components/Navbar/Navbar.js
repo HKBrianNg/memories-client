@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {AppBar, Toolbar, Avatar, Button, InputBase} from '@mui/material';
+import {AppBar, Toolbar, Avatar, Button, InputBase, Menu, MenuItem, IconButton} from '@mui/material';
 import memoriesLogo from '../../images/memories-Logo.png';
 import memoriesText from '../../images/memories-text.png';
 import {Link, useLocation, useNavigate, Navigate} from 'react-router-dom';
@@ -14,6 +14,7 @@ import {getPostsBySearch} from '../../actions/posts';
 import SearchIcon from '@mui/icons-material/Search';
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import { styled, alpha } from '@mui/material/styles';
+import MenuIcon from '@mui/icons-material/Menu';
 
 function Navbar() {
     const [user,setUser] = useState(JSON.parse(localStorage.getItem('profile')));
@@ -21,7 +22,17 @@ function Navbar() {
     const dispatch = useDispatch();
     const location = useLocation();
     const navigate = useNavigate();
-    
+
+    // menu
+    const [anchorEl, setAnchorEl] = useState(null);
+    const isMenuOpen = Boolean(anchorEl);
+
+
+    const handleMenuClose = () => {
+        setAnchorEl(null);
+        // handleMobileMenuClose();
+      };
+
     const logout = ()=> {
         dispatch({type: LOGOUT});
         navigate("/",{replace:true});
@@ -54,6 +65,34 @@ function Navbar() {
         setUser(JSON.parse(localStorage.getItem('profile')));
     },[location]);
    
+
+    // menu
+    const menuId = 'primary-search-account-menu';
+    const renderMenu = (
+        <Menu
+          anchorEl={anchorEl}
+          anchorOrigin={{
+            vertical: 'top',
+            horizontal: 'right',
+          }}
+          id={menuId}
+          keepMounted
+          transformOrigin={{
+            vertical: 'top',
+            horizontal: 'right',
+          }}
+          open={isMenuOpen}
+          onClose={handleMenuClose}
+        >
+          <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
+          <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+        </Menu>
+      );
+    
+
+
+
+    // search field
     const SearchField = styled('div')(({ theme }) => ({
         position: 'relative',
         borderRadius: theme.shape.borderRadius,
@@ -99,6 +138,9 @@ function Navbar() {
         <AppBar position="sticky" color="inherit" sx={{borderRadius:5, display: 'flex', flexDirection: 'row', justifyContent: 'space-between', 
             alignItems: 'center', }}>
             <div style={{display:'flex', flexDirection:'row', alignItems:'center'}} >
+                <IconButton size="large" edge="start" color="primary"  sx={{ margin: '2px' }}>
+                    <MenuIcon />
+                </IconButton>
                 <Link to="/">
                     <img src={memoriesLogo} alt="icon" height="25px" width="25px" style={{padding:'2px',marginRight:"1px"}}/>
                     <img src={memoriesText} alt="icon" height="25px" width="50px" style={{padding:'2px',marginRight:"1px"}}/>
