@@ -105,7 +105,7 @@ function Navbar() {
         marginLeft: 0,
         width: '100%',
         [theme.breakpoints.up('sm')]: {
-          marginLeft: theme.spacing(3),
+          marginLeft: theme.spacing(1),
           width: 'auto',
         },
       }));
@@ -125,10 +125,10 @@ function Navbar() {
         '& .MuiInputBase-input': {
           padding: theme.spacing(1, 1, 1, 0),
           // vertical padding + font size from searchIcon
-          paddingLeft: `calc(1em + ${theme.spacing(4)})`,
+          paddingLeft: `calc(1em + ${theme.spacing(3)})`,
           transition: theme.transitions.create('width'),
           width: '100%',
-          [theme.breakpoints.up('md')]: {
+          [theme.breakpoints.up('xs')]: {
             width: '20ch',
           },
         },
@@ -142,7 +142,7 @@ function Navbar() {
                     <MenuIcon />
                 </IconButton>
                 <Link to="/">
-                    <img src={memoriesLogo} alt="icon" height="25px" width="25px" style={{padding:'2px',marginRight:"1px"}}/>
+                    {/* <img src={memoriesLogo} alt="icon" height="25px" width="25px" style={{padding:'2px',marginRight:"1px"}}/> */}
                     <img src={memoriesText} alt="icon" height="25px" width="50px" style={{padding:'2px',marginRight:"1px"}}/>
                 </Link>
             </div>
